@@ -130,7 +130,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: pbakpjatk/test-app:${{ needs.calculate-version.outputs.version }}
+          tags: s18726/test-app:${{ needs.calculate-version.outputs.version }}
   trigger-deploy:
     runs-on: ubuntu-latest
     needs: [ calculate-version, docker ]
@@ -140,7 +140,7 @@ jobs:
       uses: benc-uk/workflow-dispatch@v1
       with:
         workflow: Deploy
-        repo: pbak-pjatk/test-deployment
+        repo: s18726/test-deployment
         token: ${{ secrets.CI_TOKEN }}
         inputs: '{ "app": "test-app", "version": "${{ needs.calculate-version.outputs.version }}" }'
 
